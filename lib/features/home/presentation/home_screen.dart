@@ -1,0 +1,38 @@
+import 'package:fake_store/core/helpers/spacing.dart';
+import 'package:fake_store/features/home/presentation/widgets/banner_slider.dart';
+import 'package:fake_store/features/home/presentation/widgets/category/category_list_view.dart';
+import 'package:fake_store/features/home/presentation/widgets/products/product_list.dart';
+import 'package:fake_store/features/home/presentation/widgets/search_container.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              child: Column(
+                children: [
+                  SearchContainer(),
+                  verticalSpace(20),
+                  BannerSlider(),
+                  verticalSpace(20),
+                  SpecialityListView(),
+                  ProductList(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
