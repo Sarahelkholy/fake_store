@@ -1,3 +1,4 @@
+import 'package:fake_store/features/home/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,10 +14,8 @@ class FakeStoreApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Store app',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          ),
-          home: Container(),
+
+          home: HomeScreen(),
         );
       },
     );
