@@ -1,5 +1,7 @@
+import 'package:fake_store/core/helpers/spacing.dart';
 import 'package:fake_store/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:fake_store/features/home/presentation/widgets/category/category_list_view.dart';
+import 'package:fake_store/features/home/presentation/widgets/category/category_shimmer_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,11 +33,8 @@ class CategoriesBlocBuilder extends StatelessWidget {
   }
 
   Widget setupLoading() {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: CircularProgressIndicator(),
-      ),
+    return Column(
+      children: [verticalSpace(10), const CategoryShimmerLoading()],
     );
   }
 

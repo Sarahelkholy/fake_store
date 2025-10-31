@@ -96,8 +96,8 @@ class _ProductCardState extends State<ProductCard> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.w),
               child: Text(
-                widget.productModel?.price.toString() ?? 'EGP 200',
-                style: AppTextStyels.font12GreyRegular,
+                'EGP ${widget.productModel?.price.toString()}',
+                style: AppTextStyels.font12DarkGreyRegular,
               ),
             ),
           ],
