@@ -44,13 +44,13 @@ class _ProductCardState extends State<ProductCard> {
                       widget.productModel?.image ?? "",
                       height: 115.h,
                       width: double.infinity,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
-                          "assets/images/product.jpg",
+                          "assets/images/imageError.jpg",
                           height: 115.h,
                           width: double.infinity,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         );
                       },
                     ),
@@ -84,7 +84,7 @@ class _ProductCardState extends State<ProductCard> {
                         isInWishlist
                             ? CupertinoIcons.heart_fill
                             : CupertinoIcons.heart,
-                        color: Colors.red,
+                        color: AppColors.darkGray,
                         size: 20,
                       ),
                     ),

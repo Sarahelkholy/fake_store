@@ -20,31 +20,22 @@ class CategoryListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: itemIndex == 0 ? 0 : 24.w),
-      child: itemIndex == selectedIndex
-          ? Container(
-              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-              decoration: BoxDecoration(
-                color: AppColors.lightGrey,
-                border: Border.all(color: AppColors.grey),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                categoriesList?.name ?? 'Category',
-                style: AppTextStyels.font14DarkBlueBold,
-              ),
-            )
-          : Container(
-              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-              decoration: BoxDecoration(
-                color: AppColors.lightGrey,
-                border: Border.all(color: AppColors.lightGrey),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                categoriesList?.name ?? 'Category',
-                style: AppTextStyels.font13DarkBlueMedium,
-              ),
-            ),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+        decoration: BoxDecoration(
+          color: AppColors.lightGrey,
+          border: itemIndex == selectedIndex
+              ? Border.all(color: AppColors.grey)
+              : Border.all(color: AppColors.lightGrey),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          categoriesList?.name ?? 'Category',
+          style: itemIndex == selectedIndex
+              ? AppTextStyels.font13DarkBlueMedium
+              : AppTextStyels.font13DarkBlueMedium,
+        ),
+      ),
     );
   }
 }
