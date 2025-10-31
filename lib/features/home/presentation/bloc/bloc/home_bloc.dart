@@ -14,6 +14,8 @@ part 'home_state.dart';
 part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  List<Product> allProducts = [];
+
   final GetAllProducts _getAllProductsUseCase;
   final GetAllCategories _getAllCategoriesUseCase;
 
@@ -21,6 +23,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     : super(const HomeState.initial()) {
     on<_GetAllCategories>(_onGetAllCategories);
     on<_GetAllProducts>(_onGetAllProducts);
+    on<_SearchProducts>(_onSearchProducts);
   }
 
   void _onGetAllCategories(
@@ -44,11 +47,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final response = await _getAllProductsUseCase(NoParams());
     response.when(
       success: (data) {
+        allProducts = data;
         emit(HomeState.productsSuccess(data));
       },
       failure: (error) {
         emit(HomeState.productsError(error));
       },
     );
+  }
+
+  void _onSearchProducts(_SearchProducts event, Emitter<HomeState> emit) {
+    emit(const HomeState.productsLoading());
+
+    final filtered = allProducts
+        .where(
+          (p) =>
+              p.title?.toLowerCase().contains(event.query.toLowerCase()) ??
+              false,
+        )
+        .toList();
+    emit(HomeState.productsSuccess(filtered));
   }
 }

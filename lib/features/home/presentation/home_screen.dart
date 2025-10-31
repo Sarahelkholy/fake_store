@@ -29,21 +29,26 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Column(
-                children: [
-                  SearchContainer(),
-                  verticalSpace(20),
-                  BannerSlider(),
-                  verticalSpace(20),
-                  CategoriesBlocBuilder(),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: SingleChildScrollView(
+            child: SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: Column(
+                  children: [
+                    SearchContainer(),
+                    verticalSpace(20),
+                    BannerSlider(),
+                    verticalSpace(20),
+                    CategoriesBlocBuilder(),
 
-                  ProductsBlocBuilder(),
-                ],
+                    ProductsBlocBuilder(),
+                  ],
+                ),
               ),
             ),
           ),
