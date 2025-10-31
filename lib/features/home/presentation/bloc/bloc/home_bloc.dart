@@ -6,6 +6,7 @@ import 'package:fake_store/features/home/domain/entities/category.dart';
 
 import 'package:fake_store/features/home/domain/usecases/get_all_categories.dart';
 import 'package:fake_store/features/home/domain/usecases/get_all_products.dart';
+import 'package:fake_store/features/home/domain/usecases/get_category_products.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,12 +19,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   final GetAllProducts _getAllProductsUseCase;
   final GetAllCategories _getAllCategoriesUseCase;
+  final GetCategoryProducts _getCategoryProducts;
 
-  HomeBloc(this._getAllProductsUseCase, this._getAllCategoriesUseCase)
-    : super(const HomeState.initial()) {
+  HomeBloc(
+    this._getAllProductsUseCase,
+    this._getAllCategoriesUseCase,
+    this._getCategoryProducts,
+  ) : super(const HomeState.initial()) {
     on<_GetAllCategories>(_onGetAllCategories);
     on<_GetAllProducts>(_onGetAllProducts);
     on<_SearchProducts>(_onSearchProducts);
+    on<_GetCategoryProducts>(_onGetCategoryProducts);
   }
 
   void _onGetAllCategories(
@@ -48,6 +54,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     response.when(
       success: (data) {
         allProducts = data;
+        emit(HomeState.productsSuccess(data));
+      },
+      failure: (error) {
+        emit(HomeState.productsError(error));
+      },
+    );
+  }
+
+  void _onGetCategoryProducts(
+    _GetCategoryProducts event,
+    Emitter<HomeState> emit,
+  ) async {
+    emit(const HomeState.productsLoading());
+    final response = await _getCategoryProducts(event.categoryName);
+    response.when(
+      success: (data) {
         emit(HomeState.productsSuccess(data));
       },
       failure: (error) {
