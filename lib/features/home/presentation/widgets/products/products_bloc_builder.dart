@@ -1,3 +1,4 @@
+import 'package:fake_store/core/theming/app_text_styels.dart';
 import 'package:fake_store/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:fake_store/features/home/presentation/widgets/products/product_list.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,17 @@ class ProductsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupSuccess(productsList) {
+    if (productsList.isEmpty) {
+      return Padding(
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: Text(
+            'No products found',
+            style: AppTextStyels.font14DarkBlueBold,
+          ),
+        ),
+      );
+    }
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: ProductList(productList: productsList),
