@@ -11,4 +11,7 @@ abstract class HomeApiService {
 
   @GET(HomeApiConstants.productsEP)
   Future<List<ProductModel>> getProducts();
+
+  @GET(HomeApiConstants.categoriesEP)
+  Future<List<String>> getCategories();
 }

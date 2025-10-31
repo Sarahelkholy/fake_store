@@ -1,11 +1,12 @@
 class Product {
-  int? id;
-  String? title;
-  double? price;
-  String? description;
-  String? category;
-  String? image;
-  List<RatingData>? ratingData;
+  final int? id;
+  final String? title;
+  final double? price;
+  final String? description;
+  final String? category;
+  final String? image;
+  final Rating? rating;
+
   Product({
     this.id,
     this.title,
@@ -13,12 +14,13 @@ class Product {
     this.description,
     this.category,
     this.image,
-    this.ratingData,
+    this.rating,
   });
 }
 
-class RatingData {
-  double? rate;
-  int? count;
-  RatingData({this.rate, this.count});
+class Rating {
+  final double? rate;
+  final int? count;
+
+  Rating({this.rate, this.count});
 }

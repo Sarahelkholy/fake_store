@@ -1,10 +1,10 @@
-import 'package:fake_store/features/home/data/models/product_model.dart';
+import 'package:fake_store/features/home/domain/entities/product.dart';
 import 'package:fake_store/features/home/presentation/widgets/products/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductList extends StatelessWidget {
-  final List<ProductModel?>? productList;
+  final List<Product?>? productList;
   const ProductList({super.key, required this.productList});
 
   @override

@@ -1,9 +1,12 @@
+import 'package:fake_store/features/home/domain/entities/category.dart';
 import 'package:fake_store/features/home/presentation/widgets/category/category_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryListView extends StatefulWidget {
-  const CategoryListView({super.key});
+  final List<Category?>? categoriesList;
+
+  const CategoryListView({super.key, required this.categoriesList});
 
   @override
   State<CategoryListView> createState() => _CategoryListViewState();
@@ -18,7 +21,7 @@ class _CategoryListViewState extends State<CategoryListView> {
       height: 100.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 8,
+        itemCount: widget.categoriesList?.length,
         itemBuilder: (context, index) {
           final isSelected = selectedSpecializationIndex == index;
 
@@ -33,6 +36,7 @@ class _CategoryListViewState extends State<CategoryListView> {
               });
             },
             child: CategoryListViewItem(
+              categoriesList: widget.categoriesList?[index],
               itemIndex: index,
               selectedIndex: selectedSpecializationIndex,
             ),
