@@ -24,6 +24,8 @@ class _BannerSliderState extends State<BannerSlider> {
             aspectRatio: 14 / 6.5,
             viewportFraction: 1,
             autoPlay: true,
+            enlargeCenterPage: true,
+            scrollPhysics: BouncingScrollPhysics(),
             onPageChanged: (index, reason) {
               setState(() {
                 currentImageIndex = index;
@@ -45,8 +47,9 @@ class _BannerSliderState extends State<BannerSlider> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: bannerImages.asMap().entries.map((entry) {
-            return Container(
-              width: 8.w,
+            return AnimatedContainer(
+              duration: Duration(milliseconds: 300),
+              width: currentImageIndex == entry.key ? 12.w : 8.w,
               height: 4.h,
               margin: EdgeInsets.symmetric(horizontal: 4.w),
               decoration: BoxDecoration(
