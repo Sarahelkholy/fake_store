@@ -1,12 +1,12 @@
 import 'package:fake_store/core/theming/app_colors.dart';
 import 'package:fake_store/core/theming/app_text_styels.dart';
-import 'package:fake_store/features/home/data/models/product_model.dart';
+import 'package:fake_store/features/home/domain/entities/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductCard extends StatefulWidget {
-  final ProductModel? productModel;
+  final Product? productModel;
   final void Function()? onTap;
 
   const ProductCard({super.key, this.onTap, this.productModel});

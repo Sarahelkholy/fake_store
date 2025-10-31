@@ -1,19 +1,20 @@
 import 'package:fake_store/core/helpers/spacing.dart';
 import 'package:fake_store/core/theming/app_colors.dart';
 import 'package:fake_store/core/theming/app_text_styels.dart';
+import 'package:fake_store/features/home/domain/entities/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryListViewItem extends StatelessWidget {
-  // final SpecializationData? specializationData;
+  final Category? categoriesList;
   final int itemIndex;
   final int? selectedIndex;
 
   const CategoryListViewItem({
     super.key,
-    // this.specializationData,print('');
     required this.itemIndex,
     this.selectedIndex,
+    this.categoriesList,
   });
 
   @override
@@ -49,8 +50,7 @@ class CategoryListViewItem extends StatelessWidget {
                 ),
           verticalSpace(8),
           Text(
-            // specializationData?.name ??
-            'Category',
+            categoriesList?.name ?? 'Category',
             style: itemIndex == selectedIndex
                 ? AppTextStyels.font14DarkBlueBold
                 : AppTextStyels.font12DarkBlueRegular,

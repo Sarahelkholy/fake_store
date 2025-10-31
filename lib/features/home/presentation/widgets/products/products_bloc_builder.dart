@@ -3,8 +3,8 @@ import 'package:fake_store/features/home/presentation/widgets/products/product_l
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductsBlockBuilder extends StatelessWidget {
-  const ProductsBlockBuilder({super.key});
+class ProductsBlocBuilder extends StatelessWidget {
+  const ProductsBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {

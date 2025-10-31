@@ -1,3 +1,4 @@
+import 'package:fake_store/features/home/domain/entities/product.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_model.g.dart';
@@ -24,8 +25,6 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProductModelToJson(this);
 }
 
 @JsonSerializable()
@@ -37,6 +36,20 @@ class RatingData {
 
   factory RatingData.fromJson(Map<String, dynamic> json) =>
       _$RatingDataFromJson(json);
+}
 
-  Map<String, dynamic> toJson() => _$RatingDataToJson(this);
+extension ProductModelMapper on ProductModel {
+  Product toEntity() {
+    return Product(
+      id: id,
+      title: title,
+      price: price,
+      description: description,
+      category: category,
+      image: image,
+      rating: rating != null
+          ? Rating(rate: rating!.rate, count: rating!.count)
+          : null,
+    );
+  }
 }

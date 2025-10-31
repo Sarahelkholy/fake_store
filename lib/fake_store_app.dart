@@ -1,4 +1,5 @@
 import 'package:fake_store/core/di/dependency_injection.dart';
+import 'package:fake_store/features/home/domain/usecases/get_all_categories.dart';
 import 'package:fake_store/features/home/domain/usecases/get_all_products.dart';
 import 'package:fake_store/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:fake_store/features/home/presentation/home_screen.dart';
@@ -20,7 +21,8 @@ class FakeStoreApp extends StatelessWidget {
           title: 'Store app',
 
           home: BlocProvider(
-            create: (context) => HomeBloc(getIt<GetAllProducts>()),
+            create: (context) =>
+                HomeBloc(getIt<GetAllProducts>(), getIt<GetAllCategories>()),
             child: HomeScreen(),
           ),
         );
