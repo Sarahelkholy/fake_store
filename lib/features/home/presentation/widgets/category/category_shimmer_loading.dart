@@ -9,7 +9,7 @@ class CategoryShimmerLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30.h,
+      height: 40.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,

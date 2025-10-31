@@ -20,7 +20,7 @@ class _CategoryListViewState extends State<CategoryListView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30.h,
+      height: 40.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: widget.categoriesList?.length,
