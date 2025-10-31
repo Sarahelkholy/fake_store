@@ -6,4 +6,5 @@ class AppColors {
   static const Color darkGray = Color(0xFF757575);
 
   static const Color darkBlue = Color(0xFF242424);
+  static const Color shimmerGray = Color(0xFFEDEDED);
 }

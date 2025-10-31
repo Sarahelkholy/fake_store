@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SearchContainer(),
                     verticalSpace(20),
                     BannerSlider(),
-                    verticalSpace(20),
+
                     CategoriesBlocBuilder(),
 
                     ProductsBlocBuilder(),

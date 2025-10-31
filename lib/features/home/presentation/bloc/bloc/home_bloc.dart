@@ -36,7 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _GetAllCategories event,
     Emitter<HomeState> emit,
   ) async {
-    emit(const HomeState.productsLoading());
+    emit(const HomeState.categoriesLoading());
     final response = await _getAllCategoriesUseCase(NoParams());
     response.when(
       success: (data) {

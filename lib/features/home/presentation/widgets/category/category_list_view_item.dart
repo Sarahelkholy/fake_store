@@ -1,4 +1,3 @@
-import 'package:fake_store/core/helpers/spacing.dart';
 import 'package:fake_store/core/theming/app_colors.dart';
 import 'package:fake_store/core/theming/app_text_styels.dart';
 import 'package:fake_store/features/home/domain/entities/category.dart';
@@ -21,42 +20,31 @@ class CategoryListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: itemIndex == 0 ? 0 : 24.w),
-      child: Column(
-        children: [
-          itemIndex == selectedIndex
-              ? Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.grey),
-                    shape: BoxShape.circle,
-                  ),
-                  child: CircleAvatar(
-                    radius: 28,
-                    backgroundColor: AppColors.lightGrey,
-                    child: Image.asset(
-                      'assets/images/category.png',
-                      height: 32.h,
-                      width: 32.w,
-                    ),
-                  ),
-                )
-              : CircleAvatar(
-                  radius: 28,
-                  backgroundColor: AppColors.lightGrey,
-                  child: Image.asset(
-                    'assets/images/category.png',
-                    height: 30.h,
-                    width: 30.w,
-                  ),
-                ),
-          verticalSpace(8),
-          Text(
-            categoriesList?.name ?? 'Category',
-            style: itemIndex == selectedIndex
-                ? AppTextStyels.font14DarkBlueBold
-                : AppTextStyels.font12DarkBlueRegular,
-          ),
-        ],
-      ),
+      child: itemIndex == selectedIndex
+          ? Container(
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+              decoration: BoxDecoration(
+                color: AppColors.lightGrey,
+                border: Border.all(color: AppColors.grey),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                categoriesList?.name ?? 'Category',
+                style: AppTextStyels.font14DarkBlueBold,
+              ),
+            )
+          : Container(
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+              decoration: BoxDecoration(
+                color: AppColors.lightGrey,
+                border: Border.all(color: AppColors.lightGrey),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                categoriesList?.name ?? 'Category',
+                style: AppTextStyels.font13DarkBlueMedium,
+              ),
+            ),
     );
   }
 }
