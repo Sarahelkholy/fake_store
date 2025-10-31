@@ -1,24 +1,15 @@
 import 'package:fake_store/core/theming/app_colors.dart';
 import 'package:fake_store/core/theming/app_text_styels.dart';
+import 'package:fake_store/features/home/data/models/product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({
-    super.key,
-    this.image,
-    required this.price,
-    this.onTap,
-    required this.title,
-    required this.id,
-  });
-
-  final String? image;
-  final String title;
-  final String price;
-  final String id;
+  final ProductModel? productModel;
   final void Function()? onTap;
+
+  const ProductCard({super.key, this.onTap, this.productModel});
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -45,14 +36,25 @@ class _ProductCardState extends State<ProductCard> {
               padding: EdgeInsets.all(8.w),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
-                child: Image.asset(
-                  widget.image ?? "assets/images/product.jpg",
-                  height: 115.h,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(Icons.broken_image, size: 50);
-                  },
+                child: Padding(
+                  padding: EdgeInsets.all(8.w),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.r),
+                    child: Image.network(
+                      widget.productModel?.image ?? "",
+                      height: 115.h,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          "assets/images/product.jpg",
+                          height: 115.h,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -64,7 +66,7 @@ class _ProductCardState extends State<ProductCard> {
                 children: [
                   Expanded(
                     child: Text(
-                      'DANVOUY Womens T Shirt Casual Cotton Short',
+                      widget.productModel?.title ?? 'Name',
                       style: AppTextStyels.font14DarkBlueBold,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -93,7 +95,10 @@ class _ProductCardState extends State<ProductCard> {
 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.w),
-              child: Text('EGP 200', style: AppTextStyels.font12GreyRegular),
+              child: Text(
+                widget.productModel?.price.toString() ?? 'EGP 200',
+                style: AppTextStyels.font12GreyRegular,
+              ),
             ),
           ],
         ),

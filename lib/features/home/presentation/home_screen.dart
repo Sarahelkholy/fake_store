@@ -1,13 +1,26 @@
 import 'package:fake_store/core/helpers/spacing.dart';
+import 'package:fake_store/features/home/presentation/bloc/bloc/home_bloc.dart';
 import 'package:fake_store/features/home/presentation/widgets/banner_slider.dart';
 import 'package:fake_store/features/home/presentation/widgets/category/category_list_view.dart';
-import 'package:fake_store/features/home/presentation/widgets/products/product_list.dart';
+import 'package:fake_store/features/home/presentation/widgets/products/products_block_builder.dart';
 import 'package:fake_store/features/home/presentation/widgets/search_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(const HomeEvent.getAllProducts());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +38,9 @@ class HomeScreen extends StatelessWidget {
                   verticalSpace(20),
                   BannerSlider(),
                   verticalSpace(20),
-                  SpecialityListView(),
-                  ProductList(),
+                  CategoryListView(),
+
+                  ProductsBlockBuilder(),
                 ],
               ),
             ),
