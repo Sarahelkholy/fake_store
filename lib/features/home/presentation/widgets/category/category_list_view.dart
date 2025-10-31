@@ -2,15 +2,16 @@ import 'package:fake_store/features/home/presentation/widgets/category/category_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SpecialityListView extends StatefulWidget {
-  const SpecialityListView({super.key});
+class CategoryListView extends StatefulWidget {
+  const CategoryListView({super.key});
 
   @override
-  State<SpecialityListView> createState() => _SpecialityListViewState();
+  State<CategoryListView> createState() => _CategoryListViewState();
 }
 
-class _SpecialityListViewState extends State<SpecialityListView> {
-  var selectedSpecializationIndex = 0;
+class _CategoryListViewState extends State<CategoryListView> {
+  int? selectedSpecializationIndex;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,8 +20,18 @@ class _SpecialityListViewState extends State<SpecialityListView> {
         scrollDirection: Axis.horizontal,
         itemCount: 8,
         itemBuilder: (context, index) {
+          final isSelected = selectedSpecializationIndex == index;
+
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              setState(() {
+                if (isSelected) {
+                  selectedSpecializationIndex = null;
+                } else {
+                  selectedSpecializationIndex = index;
+                }
+              });
+            },
             child: CategoryListViewItem(
               itemIndex: index,
               selectedIndex: selectedSpecializationIndex,

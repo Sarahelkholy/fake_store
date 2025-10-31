@@ -7,13 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CategoryListViewItem extends StatelessWidget {
   // final SpecializationData? specializationData;
   final int itemIndex;
-  final int selectedIndex;
+  final int? selectedIndex;
 
   const CategoryListViewItem({
     super.key,
-    // this.specializationData,
+    // this.specializationData,print('');
     required this.itemIndex,
-    required this.selectedIndex,
+    this.selectedIndex,
   });
 
   @override
