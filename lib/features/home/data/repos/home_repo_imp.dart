@@ -36,4 +36,19 @@ class HomeRepoImp implements HomeRepo {
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }
+
+  @override
+  Future<ApiResult<List<Product>>> getProductsByCategory(
+    String categoryName,
+  ) async {
+    try {
+      final response = await _homeApiService.getCategoryProducts(categoryName);
+
+      final products = response.map((model) => model.toEntity()).toList();
+
+      return ApiResult.success(products);
+    } catch (error) {
+      return ApiResult.failure(ErrorHandler.handle(error));
+    }
+  }
 }

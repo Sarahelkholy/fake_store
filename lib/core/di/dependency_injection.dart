@@ -5,6 +5,7 @@ import 'package:fake_store/features/home/data/repos/home_repo_imp.dart';
 import 'package:fake_store/features/home/domain/repo/home_repo.dart';
 import 'package:fake_store/features/home/domain/usecases/get_all_categories.dart';
 import 'package:fake_store/features/home/domain/usecases/get_all_products.dart';
+import 'package:fake_store/features/home/domain/usecases/get_category_products.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -15,8 +16,17 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
 
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepoImp(getIt()));
+
+  // products
+
+  getIt.registerLazySingleton<GetAllProducts>(() => GetAllProducts(getIt()));
+  getIt.registerLazySingleton<GetCategoryProducts>(
+    () => GetCategoryProducts(getIt()),
+  );
+
+  // categories
+
   getIt.registerLazySingleton<GetAllCategories>(
     () => GetAllCategories(getIt()),
   );
-  getIt.registerLazySingleton<GetAllProducts>(() => GetAllProducts(getIt()));
 }

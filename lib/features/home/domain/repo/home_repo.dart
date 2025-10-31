@@ -6,4 +6,6 @@ abstract interface class HomeRepo {
   Future<ApiResult<List<Product>>> getProducts();
 
   Future<ApiResult<List<Category>>> getCategories();
+
+  Future<ApiResult<List<Product>>> getProductsByCategory(String categoryName);
 }

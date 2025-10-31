@@ -9,6 +9,8 @@ class HomeEvent with _$HomeEvent {
 
   // Products
   const factory HomeEvent.getAllProducts() = _GetAllProducts;
+  const factory HomeEvent.getCategoryProducts(String categoryName) =
+      _GetCategoryProducts;
 
   // Search
   const factory HomeEvent.searchProducts(String query) = _SearchProducts;
