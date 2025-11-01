@@ -59,7 +59,6 @@ void main() {
     });
 
     test('getProductsByCategory returns success', () async {
-      // Arrange
       when(mockApiService.getCategoryProducts('electronics')).thenAnswer(
         (_) async => [
           ProductModel(
@@ -73,10 +72,8 @@ void main() {
         ],
       );
 
-      // Act
       final result = await homeRepo.getProductsByCategory('electronics');
 
-      // Assert
       result.when(
         success: (data) {
           expect(data, isA<List<Product>>());

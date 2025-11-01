@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'home_search_test.mocks.dart';
 
 @GenerateMocks([HomeBloc])

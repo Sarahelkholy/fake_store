@@ -7,6 +7,7 @@ import 'package:fake_store/features/home/domain/entities/category.dart';
 import 'package:fake_store/features/home/domain/usecases/get_all_categories.dart';
 import 'package:fake_store/features/home/domain/usecases/get_all_products.dart';
 import 'package:fake_store/features/home/domain/usecases/get_category_products.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +16,8 @@ part 'home_state.dart';
 part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  final TextEditingController searchController = TextEditingController();
+
   List<Product> allProducts = [];
 
   final GetAllProducts _getAllProductsUseCase;
@@ -30,6 +33,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_GetAllProducts>(_onGetAllProducts);
     on<_SearchProducts>(_onSearchProducts);
     on<_GetCategoryProducts>(_onGetCategoryProducts);
+  }
+
+  @override
+  Future<void> close() {
+    searchController.dispose();
+    return super.close();
   }
 
   void _onGetAllCategories(
@@ -79,8 +88,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   void _onSearchProducts(_SearchProducts event, Emitter<HomeState> emit) {
-    emit(const HomeState.productsLoading());
-
     final filtered = allProducts
         .where(
           (p) =>
