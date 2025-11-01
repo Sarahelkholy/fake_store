@@ -73,8 +73,8 @@ void main() {
 
     test('searchProducts filters products correctly', () async {
       homeBloc.allProducts = [
-        Product(id: 1, title: 'Apple', price: 10),
-        Product(id: 2, title: 'Banana', price: 20),
+        Product(id: 1, title: 't-shirt', price: 10),
+        Product(id: 2, title: 'shoes', price: 20),
       ];
 
       expectLater(
@@ -85,7 +85,7 @@ void main() {
             return state.mapOrNull(
                   productsSuccess: (s) =>
                       s.productsList.length == 1 &&
-                      s.productsList.first.title == 'Apple',
+                      s.productsList.first.title == 't-shirt',
                 ) !=
                 null;
           }),
