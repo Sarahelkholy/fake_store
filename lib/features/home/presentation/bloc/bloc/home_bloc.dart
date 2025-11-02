@@ -3,21 +3,17 @@ import 'package:fake_store/core/networking/api_result.dart';
 import 'package:fake_store/core/usecases/usecase.dart';
 import 'package:fake_store/features/home/domain/entities/product.dart';
 import 'package:fake_store/features/home/domain/entities/category.dart';
-
 import 'package:fake_store/features/home/domain/usecases/get_all_categories.dart';
 import 'package:fake_store/features/home/domain/usecases/get_all_products.dart';
 import 'package:fake_store/features/home/domain/usecases/get_category_products.dart';
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final TextEditingController searchController = TextEditingController();
-
   List<Product> allProducts = [];
 
   final GetAllProducts _getAllProductsUseCase;
@@ -35,12 +31,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<_GetCategoryProducts>(_onGetCategoryProducts);
   }
 
-  @override
-  Future<void> close() {
-    searchController.dispose();
-    return super.close();
-  }
-
   void _onGetAllCategories(
     _GetAllCategories event,
     Emitter<HomeState> emit,
@@ -48,12 +38,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(const HomeState.categoriesLoading());
     final response = await _getAllCategoriesUseCase(NoParams());
     response.when(
-      success: (data) {
-        emit(HomeState.categoriesSuccess(data));
-      },
-      failure: (error) {
-        emit(HomeState.categoriesError(error));
-      },
+      success: (data) => emit(HomeState.categoriesSuccess(data)),
+      failure: (error) => emit(HomeState.categoriesError(error)),
     );
   }
 
@@ -65,9 +51,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         allProducts = data;
         emit(HomeState.productsSuccess(data));
       },
-      failure: (error) {
-        emit(HomeState.productsError(error));
-      },
+      failure: (error) => emit(HomeState.productsError(error)),
     );
   }
 
@@ -78,16 +62,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(const HomeState.productsLoading());
     final response = await _getCategoryProducts(event.categoryName);
     response.when(
-      success: (data) {
-        emit(HomeState.productsSuccess(data));
-      },
-      failure: (error) {
-        emit(HomeState.productsError(error));
-      },
+      success: (data) => emit(HomeState.productsSuccess(data)),
+      failure: (error) => emit(HomeState.productsError(error)),
     );
   }
 
   void _onSearchProducts(_SearchProducts event, Emitter<HomeState> emit) {
+    emit(const HomeState.productsLoading());
+
     final filtered = allProducts
         .where(
           (p) =>
