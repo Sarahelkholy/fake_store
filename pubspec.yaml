@@ -58,6 +58,8 @@ dependencies:
 
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
   # A mock framework inspired by Mockito with APIs for Fakes, Mocks, behavior verification, and stubbing
